@@ -23,7 +23,15 @@ class solidfilter:
         #user or default picture
         user_img = plt.imread(self.im_dire)
         user_img = user_img.copy()
-        user_img = user_img.astype("int")
+        user_img = user_img.astype("uint8")
+        
+        #resize
+        height = 3128
+        width = 2952
+        user_img = cv2.resize(user_img, dsize=(height,width))
+        cv_img = cv2.resize(cv_img, dsize=(height,width))  
+        
+        
         #contrast of user pic
         contrast = 40
         img_con = user_img * (contrast/127 + 1 ) - contrast
